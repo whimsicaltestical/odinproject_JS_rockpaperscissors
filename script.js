@@ -9,24 +9,64 @@ function playRound(playerSelection, computerSelection = computerPlay()) {
   let playerHand = playerSelection.toUpperCase();
   let compHand = computerSelection;
   console.log(playerHand);
-  console.log(computerSelection);
+  console.log(compHand);
   if (playerHand === compHand) {
-      return "Draw! Play again"
+      let result = "Draw! Play again";
+      return result;
   } else if (playerHand === "ROCK" && compHand === "SCISSORS") {
-      return "You win! Rock beats Scissors!";
+      let result = "You win!";
+      return result;
   } else if (playerHand === "ROCK" && compHand === "PAPER") {
-      return "You lose! Paper beats Rock!";
+      let result = "You lose!";
+      return result;
   } else if (playerHand === "SCISSORS" && compHand === "PAPER") {
-      return "You win! Scissors beats Paper!";
+      let result = "You win!";
+      return result;
   } else if (playerHand === "SCISSORS" && compHand === "ROCK") {
-      return "You lose! Rock beats Scissors!";
+      let result = "You lose!";
+      return result;
   } else if (playerHand === "PAPER" && compHand === "ROCK") {
-      return "You win! Paper beats Rock!";
+      let result = "You win!";
+      return result;
   } else if (playerHand === "PAPER" && compHand === "SCISSORS") {
-      return "You lose! Scissors beats Paper!";
+      let result = "You lose!";
+      return result;
   } else {
-      return "Please input either Rock, Paper, or Scissors.";
+      let result = "Please input either Rock, Paper, or Scissors.";
+      return result;
   }
 }
 
+function game() {
+    for (let i = 0; i < 5; i++) {
+        let playerSelection = window.prompt("Choose Your Weapon", "Rock, Paper, or Scissors");
+        let result = playRound(playerSelection, computerSelection);
+        console.log(result);
+        switch (result) {
+            case ("You win!"):
+                ++playerScore;
+                break;
+            case ("You lose!"):
+                ++computerScore;
+                break;
+            default:
+                console.log("No points awarded!");      
+        }
+        console.log(`Your score is ${playerScore}`);
+        console.log(`CPU Player score is ${computerScore}`);
+    }
+
+    if (playerScore > computerScore) {
+        console.log("Congratulations! You defeated the machine menace!");
+    } else if (playerScore < computerScore) {
+        console.log("You lost! You will suffer a horrible fate.");
+    } else {
+        console.log("Draw! You both live to fight another day...");
+    }
+    
+    console.log("Game Over! Please refresh the page to play again.");
+}
+
 const computerSelection = computerPlay();
+let playerScore = 0;
+let computerScore = 0;
